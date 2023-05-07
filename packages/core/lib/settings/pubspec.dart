@@ -197,6 +197,7 @@ class FlutterGenElementAssetsOutputs extends FlutterGenElementOutputs {
   FlutterGenElementAssetsOutputs({
     required String className,
     required this.packageParameterEnabled,
+    required this.packagePrefixEnabled,
     required this.style,
   }) : super(className: className) {
     if (style != dotDelimiterStyle &&
@@ -208,6 +209,9 @@ class FlutterGenElementAssetsOutputs extends FlutterGenElementOutputs {
 
   @JsonKey(name: 'package_parameter_enabled', required: true)
   final bool packageParameterEnabled;
+
+  @JsonKey(name: 'package_prefix_enabled', required: true)
+  final bool packagePrefixEnabled;
 
   @JsonKey(name: 'style', required: true)
   final String style;

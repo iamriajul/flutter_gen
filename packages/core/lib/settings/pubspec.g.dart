@@ -211,6 +211,7 @@ FlutterGenElementAssetsOutputs _$FlutterGenElementAssetsOutputsFromJson(
           requiredKeys: const [
             'class_name',
             'package_parameter_enabled',
+            'package_prefix_enabled',
             'style'
           ],
         );
@@ -218,12 +219,15 @@ FlutterGenElementAssetsOutputs _$FlutterGenElementAssetsOutputsFromJson(
           className: $checkedConvert('class_name', (v) => v as String),
           packageParameterEnabled:
               $checkedConvert('package_parameter_enabled', (v) => v as bool),
+          packagePrefixEnabled:
+              $checkedConvert('package_prefix_enabled', (v) => v as bool),
           style: $checkedConvert('style', (v) => v as String),
         );
         return val;
       },
       fieldKeyMap: const {
         'className': 'class_name',
-        'packageParameterEnabled': 'package_parameter_enabled'
+        'packageParameterEnabled': 'package_parameter_enabled',
+        'packagePrefixEnabled': 'package_prefix_enabled'
       },
     );

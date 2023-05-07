@@ -246,12 +246,16 @@ _Statement? _createAssetTypeStatement(
   String name,
 ) {
   final childAssetAbsolutePath = join(config.rootPath, assetType.path);
+  var assetName = posixStyle(assetType.path);
+  if (config.flutterGen.assets.outputs.packagePrefixEnabled) {
+    assetName = 'packages/${config._packageName}/$assetName';
+  }
   if (assetType.isSupportedImage) {
     return _Statement(
       type: 'AssetGenImage',
       filePath: assetType.path,
       name: name,
-      value: 'AssetGenImage(\'${posixStyle(assetType.path)}\')',
+      value: 'AssetGenImage(\'$assetName\')',
       isConstConstructor: true,
       isDirectory: false,
       needDartDoc: true,
@@ -273,7 +277,8 @@ _Statement? _createAssetTypeStatement(
     );
     if (integration == null) {
       var assetKey = posixStyle(assetType.path);
-      if (config.flutterGen.assets.outputs.packageParameterEnabled) {
+      if (config.flutterGen.assets.outputs.packageParameterEnabled ||
+          config.flutterGen.assets.outputs.packagePrefixEnabled) {
         assetKey = 'packages/${config._packageName}/$assetKey';
       }
       return _Statement(
@@ -291,7 +296,7 @@ _Statement? _createAssetTypeStatement(
         type: integration.className,
         filePath: assetType.path,
         name: name,
-        value: integration.classInstantiate(posixStyle(assetType.path)),
+        value: integration.classInstantiate(assetName),
         isConstConstructor: integration.isConstConstructor,
         isDirectory: false,
         needDartDoc: true,
